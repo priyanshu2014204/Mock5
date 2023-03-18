@@ -5,7 +5,7 @@ const router=express.Router();
 
 router.get("/",authentication,getflight);
 router.post("/",authentication,postFlight);
-router.delete("/",deleteFlightbyID);
+router.delete("/",authentication,deleteFlightbyID);
 router.get("/:id",authentication,getflightbyID);
 router.put("/:id",authentication,updateFlightfields)
 router.patch("/:id",authentication,updateFlightfields)

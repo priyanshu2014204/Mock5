@@ -43,8 +43,10 @@ exports.postFlight=async (req,res)=>{
  exports.deleteFlightbyID=async (req,res)=>{
     try{
         const {id}=req.params;
-        await Flight.findByIdAndDelete(id)
-        return res.status(202).send({"msg":"Flight Deleted Successfully"})
+        const flight=await Flight.findByIdAndDelete(id)
+        if(flight){
+        return res.status(202).send({"msg":"Flight Deleted Successfully"})}
+        return res.status(400).send({"msg":"Flight with this id isn't present"})
     }
     catch(err){
         return res.status(400).send(({"msg":err.message}))
